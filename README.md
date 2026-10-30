@@ -1,4 +1,4 @@
-# Blood Bank Management System
+# Blood Bank and Blood Donation Management System
 
 ## About the Project
 This is a web-based Blood Bank Management System developed using Python, Flask, MySQL and HTML.
