@@ -1,17 +1,18 @@
-
+from config import Config
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import mysql.connector
+
 
 app = Flask(__name__)
 app.secret_key = "blood-bank-project-key"
 
 def get_db_connection():
-    return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="dbmsproject@2007",
-        database="blood_bank"
-    )
+   return mysql.connector.connect(
+    host=Config.MYSQL_HOST,
+    user=Config.MYSQL_USER,
+    password=Config.MYSQL_PASSWORD,
+    database=Config.MYSQL_DATABASE
+)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
