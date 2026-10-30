@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff5f5;
+            margin: 0;
+            padding: 25px;
+            color: #333;
+        }
+        h1 { color: #c62828; }
+        a { color: #c62828; text-decoration: none; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th { background: #c62828; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Donation Records</h1>
+    
+<h2>Record a New Donation</h2>
+
+<form action="/add-donation" method="POST">
+    <label>Donor ID:</label>
+    <input type="number" name="donor_id" min="1" required>
+
+    <br><br>
+
+    <label>Donation Date:</label>
+    <input type="date" name="donation_date" required>
+
+    <br><br>
+
+    <label>Units Donated:</label>
+    <input type="number" name="units_donated" min="1" required>
+
+    <br><br>
+
+    <button type="submit">Add Donation</button>
+</form>
+
+<hr>
+
+    <p>Details of blood donations registered in the system.</p>
+    <a href="/">← Back to Dashboard</a>
+
+    {% if donations %}
+    <table>
+        <tr>
+            <th>Donation ID</th>
+            <th>Donor ID</th>
+            <th>Donor Name</th>
+            <th>Donation Date</th>
+            <th>Units Donated</th>
+        </tr>
+        {% for item in donations %}
+        <tr>
+            <td>{{ item.display_id }}</td>
+            <td>{{ item.donor_id }}</td>
+            <td>{{ item.donor_name }}</td>
+            <td>{{ item.donation_date or "Not entered" }}</td>
+            <td>{{ item.units_donated }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No donation records found yet.</p>
+    {% endif %}
+</body>
+</html>

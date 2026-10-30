@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Stock</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff5f5;
+            margin: 0;
+            padding: 25px;
+            color: #333;
+        }
+        h1 { color: #c62828; }
+        a { color: #c62828; text-decoration: none; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th { background: #c62828; color: white; }
+        .empty { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Blood Stock</h1>
+    <p>Available blood units in the blood bank.</p>
+    <a href="/">← Back to Dashboard</a>
+
+    {% if stocks %}
+    <table>
+        <tr>
+            <th>Stock ID</th>
+            <th>Blood Group</th>
+            <th>Units Available</th>
+        </tr>
+        {% for item in stocks %}
+        <tr>
+            <td>{{ item.stock_id }}</td>
+            <td>{{ item.blood_group }}</td>
+            <td>{{ item.units_available }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p class="empty">No blood stock records found yet.</p>
+    {% endif %}
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Stock</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff5f5;
+            margin: 0;
+            padding: 25px;
+            color: #333;
+        }
+        h1, h2 { color: #c62828; }
+        input, select, button {
+            padding: 10px;
+            margin: 5px 0;
+        }
+        button {
+            background: #c62828;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th { background: #c62828; color: white; }
+        a { color: #c62828; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>Blood Stock Management</h1>
+    <p>Add a blood group or update its available units.</p>
+    <a href="/">← Back to Dashboard</a>
+
+    {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endwith %}
+
+    <h2>Add or Update Blood Stock</h2>
+
+    <form action="/update-stock" method="POST">
+        <label>Blood Group:</label><br>
+        <select name="blood_group" required>
+            <option value="">Select Blood Group</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select>
+
+        <br><br>
+
+        <label>Units Available:</label><br>
+        <input type="number" name="units_available"
+               min="0" required>
+
+        <br><br>
+
+        <button type="submit">Save Blood Stock</button>
+    </form>
+
+    <hr>
+
+    <h2>Current Blood Stock</h2>
+
+    {% if stock_list %}
+    <table>
+        <tr>
+            <th>Stock ID</th>
+            <th>Blood Group</th>
+            <th>Units Available</th>
+        </tr>
+        {% for item in stock_list %}
+        <tr>
+            <td>{{ item.stock_id }}</td>
+            <td>{{ item.blood_group }}</td>
+            <td>{{ item.units_available }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No blood stock records found yet.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff5f5;
+            margin: 0;
+            padding: 25px;
+            color: #333;
+        }
+        h1 { color: #c62828; }
+        a { color: #c62828; text-decoration: none; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th { background: #c62828; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Hospital Records</h1>
+    <h2>Add New Hospital</h2>
+
+<form action="/add-hospital" method="POST">
+    <label>Hospital Name:</label>
+    <input type="text" name="hospital_name" required>
+
+    <br><br>
+
+    <label>Phone:</label>
+    <input type="text" name="phone">
+
+    <br><br>
+
+    <label>Address:</label>
+    <input type="text" name="address">
+
+    <br><br>
+
+    <button type="submit">Add Hospital</button>
+</form>
+
+<hr>
+    <p>Hospitals registered in the Blood Bank Management System.</p>
+    <a href="/">← Back to Dashboard</a>
+
+    {% if hospitals %}
+    <table>
+        <tr>
+            <th>Hospital ID</th>
+            <th>Hospital Name</th>
+            <th>Phone</th>
+            <th>Address</th>
+        </tr>
+        {% for item in hospitals %}
+        <tr>
+            <td>{{ item.hospital_id }}</td>
+            <td>{{ item.hospital_name }}</td>
+            <td>{{ item.phone or "Not entered" }}</td>
+            <td>{{ item.address or "Not entered" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No hospital records found yet.</p>
+    {% endif %}
+</body>
+</html>

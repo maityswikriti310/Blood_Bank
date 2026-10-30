@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank Management System</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #292d36;
+        }
+
+        header {
+            background: #b5122b;
+            color: white;
+            padding: 24px 7%;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+            font-size: 28px;
+        }
+
+        header p {
+            margin: 0;
+            color: #ffe5e9;
+        }
+
+        nav {
+            background: #8f0d22;
+            padding: 13px 7%;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 24px;
+            font-weight: bold;
+        }
+
+        main {
+            max-width: 1150px;
+            margin: 32px auto;
+            padding: 0 20px;
+        }
+
+        .welcome {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px #0000000b;
+        }
+
+        .welcome h2 {
+            margin-top: 0;
+            color: #b5122b;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            border-top: 5px solid #c71936;
+            box-shadow: 0 3px 12px #0000000b;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 17px;
+        }
+
+        .number {
+            color: #b5122b;
+            font-size: 34px;
+            font-weight: bold;
+            margin: 14px 0 5px;
+        }
+
+        .note {
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 23px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 12px 5px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🩸 Blood Bank Management System</h1>
+        <p>Donate Blood, Save Lives</p>
+    </header>
+
+    
+<nav>
+    <a href="/">Dashboard</a>
+    <a href="/donors">Donors</a>
+    <a href="/patients">Patients</a>
+    <a href="/requests">Blood Requests</a>
+    <a href="/stock">Blood Stock</a>
+    <a href="/donations">Donation Records</a>
+    <a href="/hospitals">Hospital Records</a>
+    <a href="#records">Database Records</a>
+</nav>
+
+
+    <main>
+        <section class="welcome">
+            <h2>Welcome to the Blood Bank Dashboard</h2>
+            <p>
+                Manage donor details, patients, donations, blood stock,
+                blood requests, and hospital information in one place.
+            </p>
+        </section>
+
+        <h2 id="records">Database Overview</h2>
+
+        <section class="cards">
+            <div class="card">
+                <h3>Donors</h3>
+                <div class="number">{{ counts['donor'] }}</div>
+                <p class="note">Registered donors</p>
+            </div>
+
+            <div class="card">
+                <h3>Patients</h3>
+                <div class="number">{{ counts['patient'] }}</div>
+                <p class="note">Registered patients</p>
+            </div>
+
+            <div class="card">
+                <h3>Donations</h3>
+                <div class="number">{{ counts['donation'] }}</div>
+                <p class="note">Donation records</p>
+            </div>
+
+            <div class="card">
+                <h3>Blood Stock</h3>
+                <div class="number">{{ counts['blood_stock'] }}</div>
+                <p class="note">Blood stock records</p>
+            </div>
+
+            <div class="card">
+                <h3>Blood Requests</h3>
+                <div class="number">{{ counts['blood_request'] }}</div>
+                <p class="note">Patient blood requests</p>
+            </div>
+
+            <div class="card">
+                <h3>Hospitals</h3>
+                <div class="number">{{ counts['hospital'] }}</div>
+                <p class="note">Hospital records</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Blood Bank Management System | College Project
+    </footer>
+</body>
+</html>
